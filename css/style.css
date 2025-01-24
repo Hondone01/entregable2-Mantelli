@@ -392,4 +392,59 @@ form input {
   color: #ec7d15;
 }
 
+.grid-container3 {
+  width: 100%;
+  max-width: 660px;
+  background-color: #c5c5c4;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas: "item-1 item-1 item-2 item-2" "item-3 item-3 item-4 item-4" "item-3 item-3 item-4 item-4" "item-3 item-3 item-4 item-4";
+}
+.grid-container3 .div-1 {
+  margin-left: 30px;
+  grid-area: item-1;
+  margin-top: 10px;
+  margin-bottom: -40px;
+  align-content: center;
+}
+.grid-container3 .div-2 {
+  margin-left: 60px;
+  margin-bottom: -50px;
+  grid-area: item-2;
+  align-content: center;
+}
+.grid-container3 .div-3 {
+  margin-left: 40px;
+  width: 150px;
+  grid-area: item-3;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container3 .div-3 .botonIncluir {
+  margin-left: -10px;
+  margin-bottom: 30px;
+  margin-top: -10px;
+}
+.grid-container3 .div-3 .botonIncluir button {
+  width: 80px;
+}
+.grid-container3 .div-3 .botonIncluir :hover {
+  border-radius: 3px;
+  background-color: #f7f8a4;
+  cursor: pointer;
+}
+.grid-container3 .div-4 {
+  width: 300px;
+  height: 300px;
+  grid-area: item-4;
+  margin-top: 10px;
+  margin-top: 40px;
+  align-content: center;
+  background-color: #e7e5e5;
+  border-radius: 5px;
+  border: 1px solid rgb(31, 52, 90);
+}
+
 /*# sourceMappingURL=style.css.map */

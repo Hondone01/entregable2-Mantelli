@@ -59,7 +59,6 @@ let evento = document.getElementById("botonAgregar")
 evento.onclick = () => {
     cargaDeRepuestos()
     productos.forEach((producto) => {
-        console.log(producto)
     })
     formularioDeProductos.reset()
 }
