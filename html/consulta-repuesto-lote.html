@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta-repuesto-lote</title>
+    <script defer src="../js/por-lote.js"></script> 
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Consulta de Repuestos por Lote</h1>
+    <p>Aquí puedes consultar un lote y te devolverá a que repuesto pertenece.</p>
+    
+    <div class="consultaPorLoteDatosUsuario">
+        <label for="codigo">Ingresá el lote del repuesto que buscás:</label>
+        <input type="text" id="lote" required>
+    </div>
+    
+    <div class="botonBuscar">
+        <button type= "button" id="botonCalcular">Buscar</button>
+    </div>
+    
+    <p id="mensaje"></p>
+    
+    <section id="productos-lote-container"></section>
+
+    <div class="porLoteVolverMenu">
+        <button type= "button" id="volverMenu">Volver al menu</button>
+    </div>
+</body>
+</html>

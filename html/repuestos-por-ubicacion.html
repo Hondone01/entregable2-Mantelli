@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repuestos-por-ubicacion</title>
+    
+    <script defer src="../js/productos-por-ubicacion.js"></script> 
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h1>Repuestos por Ubicación</h1>
+    <p>Aquí podrás observar los repuestos que tienes dentro de una ubicación específica.</p>
+    
+    <p id="mensaje"></p>
+    
+    <div class="repustosPorUbicacionDatosUsuario">
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="posicion" required>
+        <div class="botonBuscar">
+            <button type= "button" id="botonBuscar">Buscar</button>
+        </div>
+    </div>
+    
+    <section id="productos-por-ubicacion"></section>
+    
+    <div class="repuestosPorUbiVolverMenu">
+        <button type= "button" id="volverMenu">Volver al menu</button>
+    </div>
+</body>
+</html>

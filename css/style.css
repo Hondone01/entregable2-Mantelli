@@ -1,0 +1,395 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  justify-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+}
+body .container :hover {
+  transform: scale(1.05);
+  background-color: #a3c4a3;
+  font-size: large;
+}
+
+input {
+  text-transform: uppercase;
+}
+
+.volverMenuIngreso {
+  margin-left: -500px;
+  margin-top: 50px;
+}
+.volverMenuIngreso :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+}
+.botones .CargaVolverAlMenu {
+  margin-top: 25px;
+  display: flex;
+  margin-left: -200px;
+}
+.botones .CargaVolverAlMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+.botones .botonAgregarInventario {
+  margin-top: 30px;
+}
+
+.consumirVolverMenu {
+  margin-left: -500px;
+}
+.consumirVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.grid-container1 {
+  width: 100%;
+  max-width: 660px;
+  background-color: #c5c5c4;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas: "item-1 item-1 item-4" "item-2 item-2 item-5" "item-3 item-3 item-6" "item-7 item-7 item-7";
+}
+.grid-container1 .div-1 {
+  padding-top: 20px;
+  padding-left: 120px;
+  grid-area: item-1;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-2 {
+  padding-left: 120px;
+  grid-area: item-2;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-3 {
+  padding-left: 120px;
+  padding-bottom: 10px;
+  grid-area: item-3;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-4 {
+  padding-top: 20px;
+  grid-area: item-4;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-5 {
+  grid-area: item-5;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-6 {
+  padding-bottom: 10px;
+  grid-area: item-6;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container1 .div-7 {
+  padding-bottom: 10px;
+  grid-area: item-7;
+  margin-top: 10px;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.grid-container2 {
+  width: 100%;
+  max-width: 660px;
+  background-color: #c5c5c4;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas: "item-1 item-1 item-6" "item-2 item-2 item-7" "item-3 item-3 item-8" "item-4 item-4 item-9" "item-5 item-5 item-10" "item-11 item-11 item-11";
+}
+.grid-container2 .div-1 {
+  padding-top: 20px;
+  padding-left: 120px;
+  grid-area: item-1;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-2 {
+  padding-left: 120px;
+  grid-area: item-2;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-3 {
+  padding-left: 120px;
+  grid-area: item-3;
+  margin-top: 10px;
+}
+.grid-container2 .div-4 {
+  padding-left: 120px;
+  grid-area: item-4;
+}
+.grid-container2 .div-5 {
+  margin-top: 10px;
+  padding-left: 120px;
+  grid-area: item-5;
+}
+.grid-container2 .div-6 {
+  padding-top: 20px;
+  padding-left: 20px;
+  grid-area: item-6;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-7 {
+  padding-left: 20px;
+  grid-area: item-7;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-8 {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  grid-area: item-8;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-9 {
+  padding-left: 20px;
+  grid-area: item-9;
+  align-content: center;
+}
+.grid-container2 .div-10 {
+  padding-left: 20px;
+  grid-area: item-10;
+  margin-top: 10px;
+  align-content: center;
+}
+.grid-container2 .div-11 {
+  padding-bottom: 10px;
+  grid-area: item-11;
+  margin-top: 10px;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.cantidadTotalDatosUsuario {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.repustosPorUbicacionDatosUsuario {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.consultaPorLoteDatosUsuario {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.porLoteVolverMenu {
+  margin-left: -500px;
+}
+.porLoteVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.subtitulo {
+  margin-bottom: 50px;
+}
+
+.verInventarioVolverMenu {
+  margin-bottom: 25px;
+  margin-top: 40px;
+  margin-left: -600px;
+}
+.verInventarioVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.botonBuscar button {
+  width: 100px;
+}
+.botonBuscar :hover {
+  border-radius: 5px;
+  background-color: #5af55a;
+  cursor: pointer;
+}
+
+.pintaAmarillo button {
+  width: 120px;
+}
+.pintaAmarillo :hover {
+  border-radius: 3px;
+  background-color: #f7f8a4;
+  cursor: pointer;
+}
+
+.cantidadTotalVolverMenu {
+  margin-left: -500px;
+}
+.cantidadTotalVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.repuestosPorUbiVolverMenu {
+  margin-top: 50px;
+  margin-left: -500px;
+}
+.repuestosPorUbiVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-top: 40px;
+}
+form button {
+  margin-left: 45px;
+  margin-top: 25px;
+  width: 80px;
+}
+form div {
+  margin-top: 10px;
+}
+
+form input {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1019607843);
+  text-align: center;
+  padding: 30px;
+  width: 100px;
+  height: 150px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1019607843);
+  border-radius: 8px;
+}
+
+.card a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  background-color: rgb(247, 75, 75);
+  width: 600px;
+  max-width: 100%;
+  padding: 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px;
+}
+.modal p {
+  text-align: justify;
+}
+
+.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.contieneBotonDestruirInventario .borroInventario {
+  border: solid 1px;
+  background-color: #fab595;
+  border-radius: 3px;
+}
+.contieneBotonDestruirInventario :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #ff0000;
+}
+
+.destruirInventarioVolverMenu {
+  margin-top: 50px;
+  margin-left: -500px;
+}
+.destruirInventarioVolverMenu :hover {
+  border: solid 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #78beb5;
+}
+
+.colorFondoPrecaucion {
+  background-color: #ff0000;
+}
+
+.mensajeAlerta {
+  color: #ec7d15;
+}
+
+/*# sourceMappingURL=style.css.map */
