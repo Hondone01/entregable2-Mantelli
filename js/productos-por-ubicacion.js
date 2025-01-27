@@ -4,12 +4,14 @@ es muy similar a la funcionalidad para consultar por lote*/
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 let productsContainer = document.getElementById("productos-por-ubicacion")
 let aviso = document.getElementById("mensaje")
-
+document.getElementById("posicion").focus()
 function renderProductos(productsArray) {
     productsContainer.innerHTML = ""
    
     if (productsArray.length === 0) {
         productsContainer.innerHTML = `<p>No se encontraron productos en esta ubicación.</p>`
+        document.getElementById("posicion").value=""
+        document.getElementById("posicion").focus()
         return
     }
     
@@ -21,18 +23,13 @@ function renderProductos(productsArray) {
         `
         productsContainer.appendChild(card)
     })
+     document.getElementById("posicion").value=""
+     document.getElementById("posicion").focus()
 }
 
 const verUbicacion = () => {
     aviso.innerHTML = ""
    const busquedaUsuario = document.getElementById("posicion").value.toUpperCase()
-
-   if (!busquedaUsuario) {
-        aviso.innerHTML = `<p>Por favor, ingresa una ubicación válida.</p>`
-        productsContainer.innerHTML = ""
-        return
-    }
-
     const ubicaciones = productos.filter((producto) => producto.ubicacion === busquedaUsuario)
     renderProductos(ubicaciones)
 }

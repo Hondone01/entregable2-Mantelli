@@ -8,6 +8,7 @@ const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("productos-lote-container")
 let aviso = document.getElementById("mensaje")
+document.getElementById("lote").focus()
 
 if (productos.length === 0) {
     productsContainer.innerHTML = `<p>No se encontraron productos con ese lote.</p>`
@@ -59,6 +60,7 @@ const loteBusqueda = () => {
 let evento = document.getElementById("botonCalcular")
 evento.onclick = () => {
     loteBusqueda()
+    document.getElementById("lote").focus()
 }
 
 let evento1 = document.getElementById("volverMenu")

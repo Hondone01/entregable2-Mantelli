@@ -8,6 +8,7 @@ const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("productos-ingreso-container")
 let aviso = document.getElementById("mensaje")
+document.getElementById("codigo").focus()
 
 if (productos.length === 0) {
     productsContainer.innerHTML = `<p>No se encontraron productos ingresados con ese código.</p>`
@@ -75,11 +76,14 @@ const ingresoRepuesto = () => {
     document.getElementById("cantidad").value = ""
     document.getElementById("detalle").value = ""
     document.getElementById("posicion").value = ""
+    document.getElementById("codigo").focus()
+
 }
 
 let evento = document.getElementById("botonCalcular")
 evento.onclick = () => {
     ingresoRepuesto()
+    document.getElementById("codigo").focus()
 }
 
 let evento1 = document.getElementById("volverMenu")

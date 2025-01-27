@@ -6,7 +6,7 @@ quen de esta manera no repite la misma ubicacion cuando entrega el resultado.*/
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 let productsContainer = document.getElementById("productos-total-container")
 let aviso = document.getElementById("mensaje")
-
+document.getElementById("producto").focus()
 if (productos.length === 0) {
     productsContainer.innerHTML = `<p>No se encontraron productos con el código introducido.</p>`
 }
@@ -50,11 +50,13 @@ const cantidadTotal = () => {
 
         aviso.innerHTML = `<p>Los datos obtenidos son:</p>`
     }
+    document.getElementById("producto").value=""
 }
 
 let evento = document.getElementById("botonCalcular")
 evento.onclick = () => {
     cantidadTotal()
+    document.getElementById("producto").focus()
 }
 
 let volverAlMenu = document.getElementById("regresaMenu")
