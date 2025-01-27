@@ -461,6 +461,8 @@ opacity: 1;
     margin-bottom: -50px;
     grid-area: item-2;
     align-content: center;
+   
+    
   }
   
   .div-3{
@@ -487,18 +489,17 @@ opacity: 1;
   
   .div-4{
     width: 300px;
-    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
     grid-area: item-4;
     margin-top: 10px;
     margin-top: 40px;
-    align-content: center;
+    align-content: start;
     background-color: #e7e5e5;
     border-radius: 5px;
     border: 1px solid rgb(31, 52, 90);
   }
-  
 }
-
 
 
 
