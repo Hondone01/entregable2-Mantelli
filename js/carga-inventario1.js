@@ -91,11 +91,45 @@ const procesarIngreso = () => {
 
     localStorage.setItem("productos", JSON.stringify(productos))
 
-    preCarga.length = 0 // Vaciar la precarga
-    renderizarPrecarga() // Limpiar la vista de precarga
-   // document.getElementById("codigo").focus()
+    preCarga.length = 0 
+    renderizarPrecarga() 
     aviso.innerHTML = `<p>Productos procesados correctamente.</p>`
 }
+
+let baseDeDatos =[];
+fetch("../db/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    baseDeDatos = data; 
+  });
+  
+const buscarProductoPorCodigo = (codigo) => {
+    return baseDeDatos.find((producto) => producto.codigo === codigo);
+  };
+  
+  const codigoInput = document.getElementById("codigo");
+  
+  codigoInput.addEventListener("input", () => {
+    const codigoIngresado = codigoInput.value.toUpperCase(); 
+    const productoEncontrado = buscarProductoPorCodigo(codigoIngresado);
+  
+    if (productoEncontrado) {
+      document.getElementById("descripcion").value = productoEncontrado.descripcion;
+      document.getElementById("ubicacion").value = productoEncontrado.ubicacion;
+      document.getElementById("descripcion").setAttribute("disabled", "true");
+  
+      aviso.innerHTML = "";
+  
+      document.getElementById("cantidad").focus();
+    } else {
+     
+      document.getElementById("descripcion").value = "";
+      document.getElementById("ubicacion").value = "";
+      document.getElementById("descripcion").removeAttribute("disabled");
+  
+      aviso.innerHTML = `<p>El código ingresado no se encuentra en la base de datos.</p>`;
+    }
+  });
 
 let evento = document.getElementById("incluirCarga")
 evento.onclick = () => {
