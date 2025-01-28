@@ -1,5 +1,5 @@
-const producto= [
-    {id: 1, codigo: "1653R1V" , descripcion: "SENSOR DIF PRESS 1.45 PSI MAX" , ubicacion: "2A4"},
+const listaRepuestos= [
+{id: 1, codigo: "1653R1V" , descripcion: "SENSOR DIF PRESS 1.45 PSI MAX" , ubicacion: "2A4"},
 {id: 2, codigo: "1931R1V" , descripcion: "VALV MINI PROP 12V 2WAY NC" , ubicacion: "1D2"},
 {id: 3, codigo: "2015R2V" , descripcion: "SENSOR DE PRESION HONEYWELL  COMPLETO BLINDAJE" , ubicacion: "2A4"},
 {id: 4, codigo: "2185R1V" , descripcion: "GABINETE GRAPH: TAPA POST. C/ BLINDAJE" , ubicacion: "1A0"},
