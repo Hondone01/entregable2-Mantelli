@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantidad-total-repuestos</title>
+    <script defer src="../js/total-repuesto.js"></script> 
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h1>Cantidad total por repuesto</h1>
+    <p>Aquí podrás observar la cantidad total de un repuesto específico en stock.</p>
+
+    <div class="cantidadTotalDatosUsuario">
+        <label for="codigo">Ingresá el código del repuesto que buscás:</label>
+        <input type="text" id="producto" required>
+    </div>
+    
+    <div class="botonBuscar">
+        <button type= "button" id="botonCalcular">Buscar</button>
+    </div>
+    
+    <p id="mensaje"></p>
+    
+    <section id="productos-total-container"> </section>
+    
+    <div class="cantidadTotalVolverMenu">
+        <button type= "button" id="regresaMenu">Volver al menu</button>
+    </div>
+</body>
+</html>

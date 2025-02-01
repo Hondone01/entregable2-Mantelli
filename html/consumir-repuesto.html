@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir-repuesto</title>
+    <script defer src="../js/consumir-repuesto.js"></script> 
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Consumos de Repuestos</h1>
+    <p>Aquí podrás indicar cuando realizas un consumo de stock.</p>
+    
+    <div class="grid-container1">
+        <div class="div-1"><label for="codigo">Ingresá el código del repuesto a consumir:</label></div>
+        <div class="div-2"><label for="lote">Ingresá el lote del repuesto a consumir:</label></div>
+        <div class="div-3"><label for="cantidad">Ingresá la cantidad del repuesto a consumir:</label></div>
+        <div class="div-4"><input id="codigo" type="text" class="inputCodigo"  required></div>
+        <div class="div-5"><input id="lote" type="text" class="inputLote" required></div>
+        <div class="div-6"><input id="cantidad" type="text" class="inputCantidad" required></div>
+        <div class="div-7 pintaAmarillo"><button type= "button" id="calcular">Ok</button></div>
+    </div>
+        
+   
+    
+    <p id="mensaje"></p>
+    
+    <section id="productos-consumo-container"></section>
+
+    <div class="consumirVolverMenu">
+        <button type= "button" id="vuelvoMenu">Volver al menu</button>
+    </div>
+</body>
+</html>
