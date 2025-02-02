@@ -8,7 +8,8 @@ let productsContainer = document.getElementById("productos-total-container")
 let aviso = document.getElementById("mensaje")
 document.getElementById("producto").focus()
 if (productos.length === 0) {
-    productsContainer.innerHTML = `<p>No se encontraron productos con el código introducido.</p>`
+    Swal.fire("No se encontraron productos con el código introducido.");
+   // productsContainer.innerHTML = `<p>No se encontraron productos con el código introducido.</p>`
 }
 
 const cantidadTotal = () => {
@@ -17,14 +18,16 @@ const cantidadTotal = () => {
     let repuestoBuscado = document.getElementById("producto").value.toUpperCase()
 
     if (!repuestoBuscado) {
-        aviso.innerHTML = `<p>Por favor, ingresá un código de repuesto válido.</p>`
+        Swal.fire("Por favor, ingresá un código de repuesto válido.");
+       // aviso.innerHTML = `<p>Por favor, ingresá un código de repuesto válido.</p>`
         return
     }
 
     const busquedaRepuestos = productos.filter((producto) => producto.codigo === repuestoBuscado)
 
     if (busquedaRepuestos.length === 0) {
-        aviso.innerHTML = `<p>No se encontraron productos con el código ingresado.</p>`
+        Swal.fire("No se encontraron productos con el código introducido.");
+       // aviso.innerHTML = `<p>No se encontraron productos con el código ingresado.</p>`
         return
     } else {
         let cantidadTotal = 0
@@ -41,14 +44,14 @@ const cantidadTotal = () => {
 
         const card = document.createElement("div")
         card.innerHTML = `
+            <h2>DATOS OBTENIDOS:</h2>
             <h3>Código: ${repuestoBuscado}</h3>
             <p>Descripción: ${descripcionProducto}</p>
-            <p>Ubicaciones: ${ubicacionesLista}</p>
+            <p>Ubicacion/es: ${ubicacionesLista}</p>
             <p>Cantidad Total: ${cantidadTotal}</p>
         `
         productsContainer.appendChild(card)
 
-        aviso.innerHTML = `<p>Los datos obtenidos son:</p>`
     }
     document.getElementById("producto").value=""
 }
@@ -59,7 +62,7 @@ evento.onclick = () => {
     document.getElementById("producto").focus()
 }
 
-let volverAlMenu = document.getElementById("regresaMenu")
+let volverAlMenu = document.getElementById("volverMenu")
 volverAlMenu.onclick = () => {
     window.location.href = "../index.html"
 }

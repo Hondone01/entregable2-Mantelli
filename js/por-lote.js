@@ -7,28 +7,28 @@ usando la estructura de las cards*/
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("productos-lote-container")
-let aviso = document.getElementById("mensaje")
+//let aviso = document.getElementById("mensaje")
 document.getElementById("lote").focus()
 
 if (productos.length === 0) {
-    productsContainer.innerHTML = `<p>No se encontraron productos con ese lote.</p>`
+    Swal.fire("No se encontraron productos con ese lote.");
 }
 
 const loteBusqueda = () => {
-    aviso.innerHTML = ""
+   // aviso.innerHTML = ""
     productsContainer.innerHTML = ""
 
     let busquedaLote = document.getElementById("lote").value.toUpperCase()
 
     if (!busquedaLote) {
-        aviso.innerHTML = `<p>Por favor, ingresá un lote válido.</p>`
+        Swal.fire("Por favor, ingresá un lote válido.");
         return
     }
 
     const buscarLote = productos.filter((producto) => producto.lote === busquedaLote)
 
     if (buscarLote.length === 0) {
-        productsContainer.innerHTML = `<p>No se encontraron repuestos con el lote ingresado.</p>`
+        Swal.fire("No se encontraron repuestos con el lote ingresado.");
         document.getElementById("lote").value = ""
         return
     }
