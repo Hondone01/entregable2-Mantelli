@@ -77,7 +77,7 @@ calculo.onclick = () => {
     consumoRepuesto()
 }
 
-let evento1 = document.getElementById("vuelvoMenu")
+let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
     window.location.href = "../index.html" 
 }
