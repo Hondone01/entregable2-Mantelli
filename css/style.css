@@ -394,13 +394,13 @@ form input {
 
 .grid-container3 {
   width: 100%;
-  max-width: 660px;
+  max-width: 850px;
   background-color: #c5c5c4;
   border-radius: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(4, auto);
-  grid-template-areas: "item-1 item-1 item-2 item-2" "item-3 item-3 item-4 item-4" "item-3 item-3 item-4 item-4" "item-3 item-3 item-4 item-4";
+  grid-template-areas: "item-1 item-1 item-2 item-2 item-2" "item-3 item-3 item-4 item-4 item-4" "item-3 item-3 item-4 item-4 item-4" "item-3 item-3 item-4 item-4 item-4";
 }
 .grid-container3 .div-1 {
   margin-left: 30px;
@@ -435,17 +435,47 @@ form input {
   background-color: #f7f8a4;
   cursor: pointer;
 }
+
 .grid-container3 .div-4 {
-  width: 300px;
-  max-height: 300px;
-  overflow-y: auto;
-  grid-area: item-4;
-  margin-top: 10px;
-  margin-top: 40px;
-  align-content: start;
-  background-color: #e7e5e5;
+  border-radius: 8px;
+  border: solid 2px black;
+  padding-right: 08px;
+  margin-top: 30px;
+  margin-left: 60px;
+  width: 550px;
+  height: 350px; /* Limita la altura para que haya un espacio definido */
+  background-color: #e4e4e4;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+.grid-container3 .div-4 .cardProducto {
+  margin-top: 5px;
+  margin-left: 5px;
+  display: flex;
+  gap: 80px; /* Puedes ajustar el espacio entre los elementos según sea necesario */
+  align-items: center; /* Alinea los elementos a la misma altura */
+  justify-content: flex-start; /* Alinea los elementos al inicio */
+}
+
+.grid-container3 .div-4 .cardProducto button {
+  margin-left: auto; /* Empuja el botón a la derecha */
+}
+
+
+
+
+.alerta {
+  margin-top: 15px;
   border-radius: 5px;
-  border: 1px solid rgb(31, 52, 90);
+  width: 660px;
+  height: 40px;
+  background-color: #c5c5c4;
+}
+.alerta .msj {
+  color: #b34a04;
+  font-size: large;
+  justify-items: center;
+  align-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

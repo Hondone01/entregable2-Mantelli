@@ -442,10 +442,10 @@ opacity: 1;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(4,auto);
   grid-template-areas:
-   "item-1 item-1 item-2 item-2"
-   "item-3 item-3 item-4 item-4"
-   "item-3 item-3 item-4 item-4"
-   "item-3 item-3 item-4 item-4"
+   "item-1 item-1 item-2 item-2 item-2"
+   "item-3 item-3 item-4 item-4 item-4"
+   "item-3 item-3 item-4 item-4 item-4"
+   "item-3 item-3 item-4 item-4 item-4"
   ;
   
   .div-1{
@@ -488,22 +488,38 @@ opacity: 1;
   }
   
   .div-4{
+    display:flex;
     width: 300px;
     max-height: 300px;
     overflow-y: auto;
     grid-area: item-4;
-    margin-top: 10px;
     margin-top: 40px;
+    margin-left: -10px;
     align-content: start;
     background-color: #e7e5e5;
     border-radius: 5px;
     border: 1px solid rgb(31, 52, 90);
+    .cardProducto{
+      display: flex;
+    }
   }
+  
 }
 
+.alerta{
+  margin-top: 15px;
+  border-radius: 5px;
+  width: 660px;
+  height: 40px;
+  background-color: #c5c5c4;
+  .msj{ 
+    color: #b34a04;
+    font-size: large;
+    justify-items: center;
+    align-content: center;
+  }
 
-
-
+}
 
 
 

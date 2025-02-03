@@ -1,6 +1,10 @@
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 const preCarga = []
 
+let codigoGrill = document.getElementById("codigoGrilla")
+let loteGrill = document.getElementById("loteGrilla")
+let cantidadGrill = document.getElementById("cantidadGrilla")
+
 const mensaje = localStorage.getItem("mensaje")
 document.getElementById("codigo").focus()
 if (mensaje) {
@@ -27,12 +31,17 @@ const aviso = document.getElementById("mensajeCarga")
 const productoCargadoDiv = document.getElementById("productoCargado")
 
 const renderizarPrecarga = () => {
-    productoCargadoDiv.innerHTML = ""
+    productoCargadoDiv.innerHTML = "" // Limpiar el contenedor
 
     preCarga.forEach((producto, index) => {
         const card = document.createElement("div")
+        card.classList.add("cardProducto") // Agregar clase para estilo
+
         card.innerHTML = `
-           <pre>  ${producto.codigo}                  ${producto.lote}          ${producto.cantidad}  <button class="eliminar" data-index="${index}">Eliminar</button></pre>
+            <div>${producto.codigo}</div>
+            <div>${producto.lote}</div>
+            <div>${producto.cantidad}</div>
+            <button class="eliminar" data-index="${index}">Eliminar</button>
         `
         productoCargadoDiv.appendChild(card)
     })
@@ -48,6 +57,8 @@ const renderizarPrecarga = () => {
     })
 }
 
+
+
 const precargarRepuestos = () => {
     aviso.innerHTML = ""
     let cargaCodigo = document.getElementById("codigo").value.toUpperCase()
@@ -57,7 +68,7 @@ const precargarRepuestos = () => {
     let cargaUbicacion = document.getElementById("ubicacion").value.toUpperCase()
 
     if (isNaN(cargaCantidad) || cargaCantidad <= 0) {
-        aviso.innerHTML = `<p>Falta ingresar valores, la cantidad es menor que 0 o ingresaste un valor inválido.</p>`
+        aviso.innerHTML = `<p>Falta llenar campos, la cantidad es menor que 0 o ingresaste un valor inválido.</p>`
         return
     }
 
