@@ -7,16 +7,17 @@ almacena en el localStorage y sinó crea el objeto completo y tambien lo almacen
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("productos-ingreso-container")
-let aviso = document.getElementById("mensaje")
+//let productsContainerUno = document.getElementById("productos-ingreso-containerUno")
 document.getElementById("codigo").focus()
 
 if (productos.length === 0) {
-    productsContainer.innerHTML = `<p>No se encontraron productos ingresados con ese código.</p>`
+    Swal.fire("No se encontraron productos ingresados con ese código.");
+   // productsContainer.innerHTML = `<p>No se encontraron productos ingresados con ese código.</p>`
 }
 
 const ingresoRepuesto = () => {
-    aviso.innerHTML = ""
     productsContainer.innerHTML = ""
+   // productsContainerUno.innerHTML = ""
 
     let ingresoCodigo = document.getElementById("codigo").value.toUpperCase()
     let ingresoLote = document.getElementById("lote").value.toUpperCase()
@@ -25,7 +26,8 @@ const ingresoRepuesto = () => {
     let ubicacion = document.getElementById("posicion").value.toUpperCase()
 
     if (!ingresoCodigo || !ingresoLote || cantidadAgregar <= 0) {
-        aviso.innerHTML = "<p>Debes completar todos los datos y la cantidad debe ser mayor a 0.</p>"
+        Swal.fire("Debes completar todos los datos y la cantidad debe ser mayor a 0.");
+       // aviso.innerHTML = "<p>Debes completar todos los datos y la cantidad debe ser mayor a 0.</p>"
         return
     }
 
@@ -37,10 +39,19 @@ const ingresoRepuesto = () => {
         repuestoExistente.cantidad += cantidadAgregar
         localStorage.setItem("productos", JSON.stringify(productos)) 
 
-        aviso.innerHTML = `
-            <p>Se agregaron ${cantidadAgregar} unidad/es al repuesto con código ${ingresoCodigo} con lote ${ingresoLote}.</p>
-            <p>Cantidad total en stock: ${repuestoExistente.cantidad}.</p>
-        `
+      //  const card1 = document.createElement("div")
+      //  card1.innerHTML = `
+       //     <p>Se agregaron ${cantidadAgregar} unidad/es al repuesto con código ${ingresoCodigo} con lote ${ingresoLote}.</p>
+      //      <p>Cantidad total en stock: ${repuestoExistente.cantidad}.</p>
+      //  `
+      //  productsContainerUno.appendChild(card1)
+
+
+      //  aviso.innerHTML = `
+      //      <p>Se agregaron ${cantidadAgregar} unidad/es al repuesto con código ${ingresoCodigo} con lote ${ingresoLote}.</p>
+      //      <p>Cantidad total en stock: ${repuestoExistente.cantidad}.</p>
+      //  `
+
         const card = document.createElement("div")
         card.innerHTML = `
             <p>*************************************************************</p>
@@ -50,13 +61,16 @@ const ingresoRepuesto = () => {
             <p>Descripción: ${descripcion}</p>
             <p>Con el lote: ${ingresoLote}.</p>
             <p>En la ubicación: ${ubicacion}.</p>
+            <p>-----------------------------------------------------------------------</p>
+            <p>Cantidad total en stock: ${repuestoExistente.cantidad}.</p>
             <p>*************************************************************</p>
         `
         productsContainer.appendChild(card)
         
     } else {
         if (!descripcion || !ubicacion) {
-            aviso.innerHTML = "<p>Debes completar la descripción y la ubicación para agregar un nuevo repuesto.</p>"
+            Swal.fire("Falta completar la descripción y/o la ubicación para agregar un nuevo repuesto.");
+           // aviso.innerHTML = "<p>Debes completar la descripción y la ubicación para agregar un nuevo repuesto.</p>"
             return
         }
 

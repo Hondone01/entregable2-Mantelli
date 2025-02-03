@@ -4,23 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carga de inventario inicial</title>
+    <!--TOASTIFY-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script defer src="../js/carga-inventario1.js"></script> 
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body id="cargaInventarioInicial">
+<body>
     <h1>Carga inicial de inventario</h1>
-    <p>Aquí deberás hacer la carga inicial de todos tus repuestos para poder hacer uso del sistema de stock.</p>
-
+   <p class="parrafoCargaInicial">Aquí deberás realizar la carga inicial de todos tus productos.</p>
     
+    <div class="CargaVolverAlMenu"> 
+        <img src="../icons/home.png" alt="">
+        <button type= "button" id="volverMenu">Volver al menu</button>
+    </div>
+
+    <div id="mensajeCarga"></div>
     
     <div class="grid-container3">
         
-        <div class="div-1"><h2>Formulario de Carga</h2></div>
+        <div class="div-1"><h2>Formulario</h2></div>
         <div class="div-2"> <h2>Proceso de ingreso</h2></div>
         
+
         <div class="div-3">
             <form id="form-carga">
-                
+               
                     <label for="codigo">Código del repuesto:</label>
                     <input type="text" id="codigo" required>
                 
@@ -46,23 +54,23 @@
         <div class="div-4">
             <div id="productoCargado"></div>
         </div>
-        
-    </div>
-    
-    <div class="alerta"> <div class="msj" id="mensajeCarga"> </div></div>
-    
-   
-    
-   
-    
-    <div class="botones">
-        <div class="botonAgregarInventario pintaAmarillo"> 
-            <button type= "button" id="botonAgregar" >Procesar ingreso</button>
-        </div>
 
-        <div class="CargaVolverAlMenu"> 
-            <button type= "button" id="volverMenu" >Volver al menu</button>
+        <div class="div-5"><h2>de carga</h2></div>
+        <div class="div-6"><h3>CODIGO</h3></div>
+        <div class="div-7"><h3>LOTE</h3></div>
+        <div class="div-8"><h3>CANTIDAD</h3></div>
+
+        <div class="div-9"> 
+            <div class="botonAgregarInventario pintaAmarillo"> 
+                <button type= "button" id="botonAgregar" >Procesar ingreso</button>
+            </div>
         </div>
     </div>
+
+     <!--TOASTIFY-->
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+     <!--SWEETALERT-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>

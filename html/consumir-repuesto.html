@@ -12,23 +12,37 @@
     <p>Aquí podrás indicar cuando realizas un consumo de stock.</p>
     
     <div class="grid-container1">
-        <div class="div-1"><label for="codigo">Ingresá el código del repuesto a consumir:</label></div>
-        <div class="div-2"><label for="lote">Ingresá el lote del repuesto a consumir:</label></div>
-        <div class="div-3"><label for="cantidad">Ingresá la cantidad del repuesto a consumir:</label></div>
-        <div class="div-4"><input id="codigo" type="text" class="inputCodigo"  required></div>
-        <div class="div-5"><input id="lote" type="text" class="inputLote" required></div>
-        <div class="div-6"><input id="cantidad" type="text" class="inputCantidad" required></div>
-        <div class="div-7 pintaAmarillo"><button type= "button" id="calcular">Ok</button></div>
+
+        <div class="div-1">
+            <label for="codigo">Ingresá el código del repuesto a consumir:</label>
+            <input id="codigo" type="text" class="inputCodigo"  required>
+        </div>
+
+        <div class="div-2">
+            <label for="lote">Ingresá el lote del repuesto a consumir:</label>
+            <input id="lote" type="text" class="inputLote" required>
+        </div>
+
+        <div class="div-3">
+            <label for="cantidad">Ingresá la cantidad del repuesto a consumir:</label>
+            <input id="cantidad" type="text" class="inputCantidad" required>
+        </div>
+
+        <div class="div-4 pintaAmarillo">
+            <button type= "button" id="calcular">Ok</button>
+        </div>
+
+        <div class="div-5">
+            <img src="../icons/home.png" alt="">
+            <button type= "button" id="volverMenu">Volver al menu</button>
+        </div>
+
     </div>
-        
-   
-    
-    <p id="mensaje"></p>
     
     <section id="productos-consumo-container"></section>
-
-    <div class="consumirVolverMenu">
-        <button type= "button" id="vuelvoMenu">Volver al menu</button>
-    </div>
+    <!--TOASTIFY-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!--SWEETALERT-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

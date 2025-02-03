@@ -9,24 +9,35 @@
 </head>
 
 <body>
-    <h1>Cantidad total por repuesto</h1>
-    <p>Aquí podrás observar la cantidad total de un repuesto específico en stock.</p>
 
-    <div class="cantidadTotalDatosUsuario">
-        <label for="codigo">Ingresá el código del repuesto que buscás:</label>
-        <input type="text" id="producto" required>
-    </div>
-    
-    <div class="botonBuscar">
-        <button type= "button" id="botonCalcular">Buscar</button>
+    <div class="grid-container6">
+
+        <div class="div-1">
+            <h1>Cantidad total por repuesto</h1>
+            <p>Aquí podrás observar la cantidad total de un repuesto específico en stock.</p>
+        </div>
+
+        <div class="div-2">
+            <label for="codigo">Codigo:</label>
+            <input type="text" id="producto" required>
+            <div class="botonBuscar">
+                <button type= "button" id="botonCalcular">Buscar</button>
+            </div>
+        </div>
+
+        <div class="div-3">
+            <section id="productos-total-container"> </section>
+        </div>
+
+        <div class="div-4">
+            <img src="../icons/home.png" alt="">
+            <button type= "button" id="volverMenu">Volver al menu</button>
+        </div>
+
     </div>
     
     <p id="mensaje"></p>
-    
-    <section id="productos-total-container"> </section>
-    
-    <div class="cantidadTotalVolverMenu">
-        <button type= "button" id="regresaMenu">Volver al menu</button>
-    </div>
+<!--SWEETALERT-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

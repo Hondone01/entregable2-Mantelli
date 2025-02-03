@@ -7,13 +7,14 @@ let aviso = document.getElementById("mensaje")
 document.getElementById("posicion").focus()
 function renderProductos(productsArray) {
     productsContainer.innerHTML = ""
-   
+    document.getElementById("posicion").focus()
     if (productsArray.length === 0) {
-        productsContainer.innerHTML = `<p>No se encontraron productos en esta ubicación.</p>`
+        Swal.fire("No se encontraron repuestos en esta ubicación!");
         document.getElementById("posicion").value=""
         document.getElementById("posicion").focus()
         return
     }
+    
     
     productsArray.forEach((producto) => {
         const card = document.createElement("div")

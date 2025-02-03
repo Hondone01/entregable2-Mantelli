@@ -9,15 +9,13 @@ consumo-container*/
 const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("productos-consumo-container")
-let aviso = document.getElementById("mensaje")
 document.getElementById("codigo").focus()
 
 if (productos.length === 0) {
-    productsContainer.innerHTML = `<p>No se encontraron productos ingresados con ese código.</p>`
+    Swal.fire("No se encontraron productos ingresados con ese código.");
 } 
 
 const consumoRepuesto = () => {
-    aviso.innerHTML = ""
     productsContainer.innerHTML = ""
 
     let consumoCodigo = document.getElementById("codigo").value.toUpperCase()
@@ -27,14 +25,14 @@ const consumoRepuesto = () => {
     const repuestosFiltrados = productos.filter((producto) => producto.codigo === consumoCodigo && producto.lote === consumoLote)
 
     if (repuestosFiltrados.length === 0) {
-        aviso.innerHTML = `<p>No se encontró el repuesto con el código y el lote que estás buscando</p>`
+        Swal.fire("No hay existencias del repuesto con el código y lote que estás buscando");
     } else {
         const cantidadTotalDisponible = repuestosFiltrados.reduce((total, producto) => total + producto.cantidad, 0)
 
         if (cantidadConsumir <= 0) {
-            aviso.innerHTML = "<p>La cantidad que querés consumir no puede ser igual o menor que 0.</p>"
+            Swal.fire("La cantidad que querés consumir no puede ser igual o menor que 0.");
         } else if (cantidadConsumir > cantidadTotalDisponible) {
-            aviso.innerHTML = "<p>No hay suficiente cantidad en stock para realizar el consumo por el total de unidades que indicaste.</p>"
+            Swal.fire("No hay suficiente cantidad en stock para realizar el consumo por el total que indicaste.");
         } else {
            
             let cantidadRestanteConsumir = cantidadConsumir
@@ -77,7 +75,7 @@ calculo.onclick = () => {
     consumoRepuesto()
 }
 
-let evento1 = document.getElementById("vuelvoMenu")
+let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
     window.location.href = "../index.html" 
 }
