@@ -154,7 +154,7 @@ const precargarRepuestos = () => {
         // Si existe el repuesto en localStorage, mostramos una alerta para agregar más cantidad
         Swal.fire({
             icon: "info",
-            title: "Repuesto ya en inventario",
+            title: "Repuesto existente!",
             text: `El repuesto con código ${cargaCodigo} y lote ${cargaLote} ya existe en el inventario. ¿Deseas agregar más cantidad?`,
             showCancelButton: true,
             confirmButtonText: "Sí, agregar más",
@@ -171,9 +171,7 @@ const precargarRepuestos = () => {
                     // Si no está en preCarga, lo agregamos como un nuevo repuesto
                     const repuesto = new Repuestos(cargaCodigo, cargaDescripcion, cargaCantidad, cargaLote, cargaUbicacion);
                     preCarga.push(repuesto);
-                    
-                }
-
+               }
                 renderizarPrecarga();
                 formularioDeProductos.reset();
                 document.getElementById("codigo").focus();
@@ -182,7 +180,6 @@ const precargarRepuestos = () => {
         });
         return; // Salir de la función para evitar agregarlo directamente a preCarga
     }
-
     // Si no existe el repuesto, lo añadimos a la lista de precarga directamente
     const repuesto = new Repuestos(cargaCodigo, cargaDescripcion, cargaCantidad, cargaLote, cargaUbicacion);
     preCarga.push(repuesto);
@@ -191,8 +188,6 @@ const precargarRepuestos = () => {
     formularioDeProductos.reset();
     document.getElementById("codigo").focus();
 }
-
-
 
 const procesarIngreso = () => {
     if (preCarga.length === 0) {

@@ -50,6 +50,7 @@ const loteBusqueda = () => {
             <h4>Código: ${producto.codigo}</h4>
             <p>Descripción: ${producto.descripcion}</p>
             <p>Cantidad: ${producto.cantidad}</p>
+            <p>Ubicacion: ${producto.ubicacion}</p>
             <p>---------------------------</p>
         `
         productsContainer.appendChild(productCard)

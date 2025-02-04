@@ -62,6 +62,7 @@ const consumoRepuesto = () => {
                 <p>*************************************************************</p>
             `
             productsContainer.appendChild(card)
+            Swal.fire("Consumo realizado!")
         }
     }
     document.getElementById("codigo").value = ""
@@ -70,10 +71,18 @@ const consumoRepuesto = () => {
     document.getElementById("codigo").focus()
 }
 
-let calculo = document.getElementById("calcular")
+let calculo = document.getElementById("calcular");
 calculo.onclick = () => {
-    consumoRepuesto()
-}
+    if (document.getElementById("codigo").value === "" || 
+        document.getElementById("lote").value === "" || 
+        document.getElementById("cantidad").value === "") {
+        Swal.fire("Debes completar todos los campos!");
+    } else {
+        consumoRepuesto();
+    }
+};
+
+
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
