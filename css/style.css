@@ -76,11 +76,11 @@ input {
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(4, auto);
-  grid-template-areas: "item-5 item-1 item-1" "item-2 item-2 item-2" "item-3 item-3 item-3" "item-4 item-4 item-4";
+  grid-template-areas: "item-6 item-1 item-1" "item-2 item-2 item-2" "item-3 item-3 item-3" "item-4 item-4 item-4" "item-5 item-5 item-5";
 }
 .grid-container1 .div-1 {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   padding-top: 20px;
   grid-area: item-1;
   margin-top: 10px;
@@ -90,7 +90,7 @@ input {
 }
 .grid-container1 .div-2 {
   display: flex;
-  gap: 42px;
+  gap: 51px;
   grid-area: item-2;
   margin-top: 10px;
   margin-left: -10px;
@@ -99,7 +99,7 @@ input {
 }
 .grid-container1 .div-3 {
   display: flex;
-  gap: 7px;
+  gap: 17px;
   padding-bottom: 10px;
   grid-area: item-3;
   margin-top: 10px;
@@ -109,31 +109,39 @@ input {
 }
 .grid-container1 .div-4 {
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  gap: 9px;
+  padding-bottom: 10px;
   grid-area: item-4;
-  margin-top: 10px;
+  margin-left: -9px;
   align-items: center;
   align-content: center;
 }
 .grid-container1 .div-5 {
-  margin-top: -200px;
-  margin-left: -700px;
   display: flex;
-  align-items: center;
+  padding-bottom: 10px;
   grid-area: item-5;
+  margin-top: 10px;
+  align-items: center;
   align-content: center;
 }
-.grid-container1 .div-5 img {
+.grid-container1 .div-6 {
+  margin-top: -130px;
+  margin-left: -670px;
+  display: flex;
+  align-items: center;
+  grid-area: item-6;
+  align-content: center;
+}
+.grid-container1 .div-6 img {
   width: 50px;
   height: 50px;
   pointer-events: none;
 }
-.grid-container1 .div-5 button {
+.grid-container1 .div-6 button {
   width: 120px;
   height: 30px;
 }
-.grid-container1 .div-5 :hover {
+.grid-container1 .div-6 :hover {
   border-radius: 3px;
   background-color: #e6f0d8;
   cursor: pointer;

@@ -20,12 +20,18 @@ const consumoRepuesto = () => {
 
     let consumoCodigo = document.getElementById("codigo").value.toUpperCase()
     let consumoLote = document.getElementById("lote").value.toUpperCase()
+    let consumoUbicacion = document.getElementById("ubicacion").value.toUpperCase()  // Obtener la ubicación
     let cantidadConsumir = Number(document.getElementById("cantidad").value) 
     
-    const repuestosFiltrados = productos.filter((producto) => producto.codigo === consumoCodigo && producto.lote === consumoLote)
+    // Ahora filtramos por código, lote y ubicación
+    const repuestosFiltrados = productos.filter((producto) => 
+        producto.codigo === consumoCodigo && 
+        producto.lote === consumoLote && 
+        producto.ubicacion === consumoUbicacion // Filtrar por ubicación
+    )
 
     if (repuestosFiltrados.length === 0) {
-        Swal.fire("No hay existencias del repuesto con el código y lote que estás buscando");
+        Swal.fire("No hay existencias del repuesto con el código, lote y ubicación que estás buscando");
     } else {
         const cantidadTotalDisponible = repuestosFiltrados.reduce((total, producto) => total + producto.cantidad, 0)
 
@@ -58,6 +64,7 @@ const consumoRepuesto = () => {
                 <p>-----------------------------------------------------------------------</p>
                 <p>Consumiste: ${cantidadConsumir} unidad/es</p>
                 <p>Con el lote: ${consumoLote}.</p>
+                <p>Ubicación: ${consumoUbicacion}.</p> <!-- Mostrar ubicación -->
                 <p>Cantidad total restante del lote consumido: ${cantidadRestanteTotal}.</p>
                 <p>*************************************************************</p>
             `
@@ -65,9 +72,11 @@ const consumoRepuesto = () => {
             Swal.fire("Consumo realizado!")
         }
     }
+    // Limpiar campos después de la operación
     document.getElementById("codigo").value = ""
     document.getElementById("lote").value = ""
     document.getElementById("cantidad").value = ""
+    document.getElementById("ubicacion").value = ""  // Limpiar campo de ubicación
     document.getElementById("codigo").focus()
 }
 
@@ -75,14 +84,13 @@ let calculo = document.getElementById("calcular");
 calculo.onclick = () => {
     if (document.getElementById("codigo").value === "" || 
         document.getElementById("lote").value === "" || 
-        document.getElementById("cantidad").value === "") {
+        document.getElementById("cantidad").value === "" || 
+        document.getElementById("ubicacion").value === "") {  // Verificar que todos los campos estén completos
         Swal.fire("Debes completar todos los campos!");
     } else {
         consumoRepuesto();
     }
 };
-
-
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
