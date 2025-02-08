@@ -216,12 +216,34 @@ const procesarIngreso = () => {
     aviso.innerHTML = `<p>Productos procesados correctamente.</p>`
 }
 
-let baseDeDatos =[];
-fetch("../db/data.json")
-  .then((response) => response.json())
-  .then((data) => {
-    baseDeDatos = data; 
-  });
+let baseDeDatos = [];
+
+const cargarBaseDeDatos = async () => {
+  try {
+    // Realizar la solicitud de manera asíncrona
+    const response = await fetch("../db/data.json");
+    
+    // Verificar si la respuesta es exitosa
+    if (!response.ok) {
+      throw new Error("Error al cargar la base de datos, la respuesta no es válida.");
+    }
+    
+    // Convertir la respuesta a JSON
+    baseDeDatos = await response.json();
+  } catch (error) {
+    console.error("Error al cargar la base de datos:", error);
+    // Mostrar un mensaje de error al usuario
+    Swal.fire({
+      icon: "error",
+      title: "Error de conexión",
+      text: "Hubo un problema al cargar los datos. Por favor, inténtalo más tarde.",
+    });
+  }
+};
+
+// Llamamos a la función para cargar los datos
+cargarBaseDeDatos();
+
   
 const buscarProductoPorCodigo = (codigo) => {
     return baseDeDatos.find((producto) => producto.codigo === codigo);
@@ -270,6 +292,13 @@ evento.onclick = () => {
         Swal.fire("Antes de incluir repuestos, debes llenar todos los campos!");
         return; // Si algún campo está vacío, no se ejecuta el toast
     } else {
+        // Verificamos si el lote ya está duplicado en preCarga o localStorage
+        const loteDuplicado = verificarLoteDuplicado(cargaLote, cargaCodigo);
+        
+        if (loteDuplicado) {
+            return; // Si el lote está duplicado, ya se disparó el Swal y detenemos la ejecución
+        }
+
         // Verificamos si el repuesto ya existe en la precarga
         const cargaRepuestoDuplicado = verificarRepuestoDuplicado(cargaCodigo, cargaLote);
         
@@ -307,8 +336,7 @@ evento.onclick = () => {
                     document.getElementById("codigo").focus();
 
                     // Mostrar el Toastify solo si confirmamos la acción
-                    if(result.isConfirmed){ tostada()}
-                   
+                    if(result.isConfirmed){ tostada() }
                 }
             });
 
@@ -318,6 +346,38 @@ evento.onclick = () => {
         // Mostrar el Toastify solo después de la precarga si no hay duplicados
         precargarRepuestos()
     }
+};
+
+// Función que verifica si hay otro repuesto con el mismo lote en preCarga o en el localStorage
+const verificarLoteDuplicado = (lote, codigo) => {
+    // Verificamos en preCarga
+    const loteEnPreCarga = preCarga.find((producto) => producto.lote === lote && producto.codigo !== codigo);
+    if (loteEnPreCarga) {
+        // Lote duplicado en la precarga
+        Swal.fire({
+            icon: "warning",
+            title: "Lote duplicado en la precarga",
+            text: `El lote ${lote} ya corresponde a otro repuesto en la precarga con el código ${loteEnPreCarga.codigo}. Por favor, ingresá un lote distinto.`,
+            confirmButtonText: "Aceptar"
+        });
+        return true; // Si se encuentra en preCarga, se retorna true para detener la ejecución
+    }
+
+    // Verificamos en localStorage
+    const loteEnLocalStorage = productos.find((producto) => producto.lote === lote && producto.codigo !== codigo);
+    if (loteEnLocalStorage) {
+        // Lote duplicado en el localStorage
+        Swal.fire({
+            icon: "warning",
+            title: "Lote duplicado en el Inventario",
+            text: `El lote ${lote} corresponde a otro repuesto ingresado en el Inventario con el código ${loteEnLocalStorage.codigo}. Por favor, ingresa un lote distinto.`,
+            confirmButtonText: "Aceptar"
+        });
+        return true; // Si se encuentra en localStorage, se retorna true para detener la ejecución
+    }
+
+    // Si no se encuentra duplicado
+    return false;
 };
 
 // Modificación en la función verificarRepuestoDuplicado para realizar la validación con Swal
