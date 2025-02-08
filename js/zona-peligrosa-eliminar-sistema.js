@@ -7,10 +7,24 @@ carga de productos*/
 let destruirTodoElInventario = document.getElementById("eliminarDatos")
 
 destruirTodoElInventario.onclick = () => {
-    localStorage.clear()
-    localStorage.setItem("mensaje", "SE HA BORRADO TODO EL INVENTARIO, COMIENZA LA CARGA DE REPUESTOS.")
-    window.location.href = "../html/carga-inventario-inicial.html"
+    // Mostrar mensaje con Swal.fire
+    Swal.fire({
+        icon: "warning",  // Puedes cambiar el icono según lo que desees
+        title: "Reseteaste el Sistema de Stock!!!",
+        text: "Se ha borrado todo el inventario, comienza la carga de repuestos.",
+        timer: 7000, // El tiempo de duración del mensaje en milisegundos
+        timerProgressBar: false, // Para mostrar la barra de progreso
+        didOpen: () => {
+            Swal.showLoading(); // Muestra el loader mientras el mensaje está activo
+        },
+        willClose: () => {
+            // Limpiar el localStorage y redirigir a la página de carga de inventario
+            localStorage.clear(); // Limpiar el almacenamiento local
+            window.location.href = "../html/carga-inventario-inicial.html"; // Redirigir a otra página
+        }
+    });
 }
+
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
