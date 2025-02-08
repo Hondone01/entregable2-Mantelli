@@ -159,29 +159,29 @@ input {
 }
 .grid-container2 .div-1 {
   padding-top: 20px;
-  padding-left: 120px;
+  padding-left: 80px;
   grid-area: item-1;
   margin-top: 10px;
   align-content: center;
 }
 .grid-container2 .div-2 {
-  padding-left: 120px;
+  padding-left: 80px;
   grid-area: item-2;
   margin-top: 10px;
   align-content: center;
 }
 .grid-container2 .div-3 {
-  padding-left: 120px;
+  padding-left: 80px;
   grid-area: item-3;
   margin-top: 10px;
 }
 .grid-container2 .div-4 {
-  padding-left: 120px;
+  padding-left: 80px;
   grid-area: item-4;
 }
 .grid-container2 .div-5 {
   margin-top: 10px;
-  padding-left: 120px;
+  padding-left: 80px;
   grid-area: item-5;
 }
 .grid-container2 .div-6 {
