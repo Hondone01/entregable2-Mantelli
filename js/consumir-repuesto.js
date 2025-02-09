@@ -12,33 +12,31 @@ let productsContainer = document.getElementById("productos-consumo-container")
 document.getElementById("codigo").focus()
 
 if (productos.length === 0) {
-    Swal.fire("No se encontraron productos ingresados con ese código.");
+    Swal.fire("No se encontraron productos ingresados con ese código.")
 } 
 
 const consumoRepuesto = () => {
     productsContainer.innerHTML = ""
-
     let consumoCodigo = document.getElementById("codigo").value.toUpperCase()
     let consumoLote = document.getElementById("lote").value.toUpperCase()
-    let consumoUbicacion = document.getElementById("ubicacion").value.toUpperCase()  // Obtener la ubicación
+    let consumoUbicacion = document.getElementById("ubicacion").value.toUpperCase()  
     let cantidadConsumir = Number(document.getElementById("cantidad").value) 
     
-    // Ahora filtramos por código, lote y ubicación
     const repuestosFiltrados = productos.filter((producto) => 
         producto.codigo === consumoCodigo && 
         producto.lote === consumoLote && 
-        producto.ubicacion === consumoUbicacion // Filtrar por ubicación
+        producto.ubicacion === consumoUbicacion
     )
 
     if (repuestosFiltrados.length === 0) {
-        Swal.fire("No hay existencias del repuesto con el código, lote y ubicación que estás buscando");
+        Swal.fire("No hay existencias del repuesto con el código, lote y ubicación que estás buscando")
     } else {
         const cantidadTotalDisponible = repuestosFiltrados.reduce((total, producto) => total + producto.cantidad, 0)
 
         if (cantidadConsumir <= 0) {
-            Swal.fire("La cantidad que querés consumir no puede ser igual o menor que 0.");
+            Swal.fire("La cantidad que querés consumir no puede ser igual o menor que 0.")
         } else if (cantidadConsumir > cantidadTotalDisponible) {
-            Swal.fire("No hay suficiente cantidad en stock para realizar el consumo por el total que indicaste.");
+            Swal.fire("No hay suficiente cantidad en stock para realizar el consumo por el total que indicaste.")
         } else {
            
             let cantidadRestanteConsumir = cantidadConsumir
@@ -72,11 +70,11 @@ const consumoRepuesto = () => {
             Swal.fire("Consumo realizado!")
         }
     }
-    // Limpiar campos después de la operación
+    
     document.getElementById("codigo").value = ""
     document.getElementById("lote").value = ""
     document.getElementById("cantidad").value = ""
-    document.getElementById("ubicacion").value = ""  // Limpiar campo de ubicación
+    document.getElementById("ubicacion").value = ""  
     document.getElementById("codigo").focus()
 }
 
@@ -85,12 +83,12 @@ calculo.onclick = () => {
     if (document.getElementById("codigo").value === "" || 
         document.getElementById("lote").value === "" || 
         document.getElementById("cantidad").value === "" || 
-        document.getElementById("ubicacion").value === "") {  // Verificar que todos los campos estén completos
-        Swal.fire("Debes completar todos los campos!");
+        document.getElementById("ubicacion").value === "") {  
+        Swal.fire("Debes completar todos los campos!")
     } else {
-        consumoRepuesto();
+        consumoRepuesto()
     }
-};
+}
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {

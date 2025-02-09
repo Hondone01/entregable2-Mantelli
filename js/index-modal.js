@@ -2,6 +2,6 @@
 
 let destruirInventario = document.getElementById("eliminarInventario")
 destruirInventario.onclick = ()=>{
-    window.location.href = "html/destruir-inventario.html"; 
+    window.location.href = "html/destruir-inventario.html";
 }
 

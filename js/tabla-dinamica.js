@@ -1,5 +1,5 @@
 
-const productos = JSON.parse(localStorage.getItem("productos")) || [];
+const productos = JSON.parse(localStorage.getItem("productos")) || []
 
 let productsContainer = document.getElementById("products-container")
 
@@ -15,7 +15,7 @@ function renderProductos(productsArray) {
 }
 renderProductos(productos)   
 
-let evento1 = document.getElementById("volverMenu");
+let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
-    window.location.href = "../index.html"; // Redirige al archivo menu.html
-};
+    window.location.href = "../index.html"
+}

@@ -90,39 +90,22 @@ const verificarRepuestoDuplicado = (codigo, lote) => {
             cancelButtonText: "No, cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                // Validar la cantidad ingresada
                 const cantidadAAgregar = parseInt(document.getElementById("cantidad").value);
-
-                // Verificar si la cantidad ingresada es válida
                 if (isNaN(cantidadAAgregar) || cantidadAAgregar <= 0) {
                     Swal.fire("Cantidad inválida", "Por favor ingresa una cantidad válida mayor que cero.", "error");
-                    return;  // Detener si la cantidad no es válida
+                    return;  
                 }
-
-                // Si el repuesto ya está en preCarga, agregamos la cantidad al existente
-                repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar;
-             //   tostada()
-                // Llamamos a renderizarPrecarga para actualizar la vista
-                renderizarPrecarga();
-
-                // Restablecer el formulario y enfocar en el campo de código
-                formularioDeProductos.reset();
-                document.getElementById("codigo").focus();
-
-                // Mostrar el Toastify después de agregar la cantidad (dentro de la confirmación)
+                repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar
+                renderizarPrecarga()
+                formularioDeProductos.reset()
+                document.getElementById("codigo").focus()
                precargarRepuestos()
-                //tostada()
             }
         });
-
-        return true;  // Retornar true si el repuesto ya estaba en preCarga, para evitar continuar
+        return true;  
     }
-
-    return false;  // Retornar false si no hay duplicados
+    return false; 
 }
-
-
-// Modificación en la función `precargarRepuestos` para integrar la validación de duplicados
 const precargarRepuestos = () => {
     aviso.innerHTML = ""
     let cargaCodigo = document.getElementById("codigo").value.toUpperCase()
@@ -135,16 +118,14 @@ const precargarRepuestos = () => {
         aviso.innerHTML = `<p>Falta ingresar valores, la cantidad es menor que 0 o ingresaste un valor inválido.</p>`
         return
     }
-
-    // Verificación de que el lote no esté siendo usado con un código diferente en localStorage
     if (verificarLoteEnProductos(cargaLote, cargaCodigo)) {
         Swal.fire({
             icon: "warning",
             title: "Lote duplicado",
             text: `El lote ${cargaLote} ya corresponde a otro repuesto con código diferente en el inventario. Por favor, ingrese un código distinto.`,
             confirmButtonText: "Aceptar"
-        });
-        return; // Si el lote es duplicado, salir de la función
+        })
+        return
     }
 
     // Verificar si el repuesto ya está en localStorage con el mismo código y lote
@@ -161,26 +142,21 @@ const precargarRepuestos = () => {
             cancelButtonText: "No, cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                // Si confirma agregar más, aumentamos la cantidad en preCarga
-                const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote);
+                const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote)
                 tostada()
                 if (repuestoDuplicadoEnPreCarga) {
-                    // Si ya está en preCarga, solo agregamos la cantidad
-                    repuestoDuplicadoEnPreCarga.cantidad += cargaCantidad;
+                    repuestoDuplicadoEnPreCarga.cantidad += cargaCantidad
                 } else {
-                    // Si no está en preCarga, lo agregamos como un nuevo repuesto
-                    const repuesto = new Repuestos(cargaCodigo, cargaDescripcion, cargaCantidad, cargaLote, cargaUbicacion);
-                    preCarga.push(repuesto);
+                    const repuesto = new Repuestos(cargaCodigo, cargaDescripcion, cargaCantidad, cargaLote, cargaUbicacion)
+                    preCarga.push(repuesto)
                }
-                renderizarPrecarga();
-                formularioDeProductos.reset();
-                document.getElementById("codigo").focus();
+                renderizarPrecarga()
+                formularioDeProductos.reset()
+                document.getElementById("codigo").focus()
             }
-            
-        });
-        return; // Salir de la función para evitar agregarlo directamente a preCarga
+        })
+        return; 
     }
-    // Si no existe el repuesto, lo añadimos a la lista de precarga directamente
     const repuesto = new Repuestos(cargaCodigo, cargaDescripcion, cargaCantidad, cargaLote, cargaUbicacion);
     preCarga.push(repuesto);
     tostada()
@@ -216,53 +192,45 @@ const procesarIngreso = () => {
     aviso.innerHTML = `<p>Productos procesados correctamente.</p>`
 }
 
-let baseDeDatos = [];
+let baseDeDatos = []
 
 const cargarBaseDeDatos = async () => {
   try {
-    // Realizar la solicitud de manera asíncrona
-    const response = await fetch("../db/data.json");
-    
-    // Verificar si la respuesta es exitosa
+    const response = await fetch("../db/data.json")
     if (!response.ok) {
-      throw new Error("Error al cargar la base de datos, la respuesta no es válida.");
+      throw new Error("Error al cargar la base de datos, la respuesta no es válida.")
     }
-    
-    // Convertir la respuesta a JSON
-    baseDeDatos = await response.json();
+    baseDeDatos = await response.json()
   } catch (error) {
-    console.error("Error al cargar la base de datos:", error);
-    // Mostrar un mensaje de error al usuario
+    console.error("Error al cargar la base de datos:", error)
+  
     Swal.fire({
       icon: "error",
       title: "Error de conexión",
       text: "Hubo un problema al cargar los datos. Por favor, inténtalo más tarde.",
-    });
+    })
   }
-};
+}
 
-// Llamamos a la función para cargar los datos
-cargarBaseDeDatos();
-
-  
+cargarBaseDeDatos()
 const buscarProductoPorCodigo = (codigo) => {
-    return baseDeDatos.find((producto) => producto.codigo === codigo);
-};
+    return baseDeDatos.find((producto) => producto.codigo === codigo)
+}
   
-const codigoInput = document.getElementById("codigo");
+const codigoInput = document.getElementById("codigo")
 
 codigoInput.addEventListener("blur", () => {
-    const codigoIngresado = codigoInput.value.toUpperCase();
-    const productoEncontrado = buscarProductoPorCodigo(codigoIngresado);
+    const codigoIngresado = codigoInput.value.toUpperCase()
+    const productoEncontrado = buscarProductoPorCodigo(codigoIngresado)
 
     if (productoEncontrado) {
-        // Si el código se encuentra en la base de datos, autocompletar los campos
-        document.getElementById("descripcion").value = productoEncontrado.descripcion;
-        document.getElementById("ubicacion").value = productoEncontrado.ubicacion;
-        document.getElementById("descripcion").setAttribute("disabled", "true");
-        document.getElementById("cantidad").focus(); // Pone el foco en el campo de cantidad
+        
+        document.getElementById("descripcion").value = productoEncontrado.descripcion
+        document.getElementById("ubicacion").value = productoEncontrado.ubicacion
+        document.getElementById("descripcion").setAttribute("disabled", "true")
+        document.getElementById("cantidad").focus()
     } else if (codigoIngresado !== "") {
-        // Si el código no se encuentra en la base de datos y no está vacío
+        
         Swal.fire({
             position: "top-end",
             icon: "warning",
@@ -271,39 +239,36 @@ codigoInput.addEventListener("blur", () => {
             timer: 1500
         });
         
-        // Limpiar los campos de descripción y ubicación si el código no se encuentra
-        document.getElementById("descripcion").value = "";
-        document.getElementById("ubicacion").value = "";
-        document.getElementById("descripcion").removeAttribute("disabled");
+        document.getElementById("descripcion").value = ""
+        document.getElementById("ubicacion").value = ""
+        document.getElementById("descripcion").removeAttribute("disabled")
     }
-});
+})
 
-
-let evento = document.getElementById("incluirCarga");
+let evento = document.getElementById("incluirCarga")
 evento.onclick = () => {
-    let cargaCodigo = document.getElementById("codigo").value.toUpperCase();
-    let cargaDescripcion = document.getElementById("descripcion").value.toUpperCase();
-    let cargaCantidad = parseInt(document.getElementById("cantidad").value);
-    let cargaLote = document.getElementById("lote").value.toUpperCase();
-    let cargaUbicacion = document.getElementById("ubicacion").value.toUpperCase();
+    let cargaCodigo = document.getElementById("codigo").value.toUpperCase()
+    let cargaDescripcion = document.getElementById("descripcion").value.toUpperCase()
+    let cargaCantidad = parseInt(document.getElementById("cantidad").value)
+    let cargaLote = document.getElementById("lote").value.toUpperCase()
+    let cargaUbicacion = document.getElementById("ubicacion").value.toUpperCase()
 
-    // Verificar si algún campo está vacío o la cantidad no es válida
+    
     if (!cargaCodigo || !cargaDescripcion || !cargaLote || !cargaUbicacion || isNaN(cargaCantidad) || cargaCantidad <= 0) {
-        Swal.fire("Antes de incluir repuestos, debes llenar todos los campos!");
-        return; // Si algún campo está vacío, no se ejecuta el toast
+        Swal.fire("Antes de incluir repuestos, debes llenar todos los campos!")
+        return
     } else {
-        // Verificamos si el lote ya está duplicado en preCarga o localStorage
-        const loteDuplicado = verificarLoteDuplicado(cargaLote, cargaCodigo);
+        
+        const loteDuplicado = verificarLoteDuplicado(cargaLote, cargaCodigo)
         
         if (loteDuplicado) {
-            return; // Si el lote está duplicado, ya se disparó el Swal y detenemos la ejecución
+            return
         }
 
-        // Verificamos si el repuesto ya existe en la precarga
-        const cargaRepuestoDuplicado = verificarRepuestoDuplicado(cargaCodigo, cargaLote);
+        const cargaRepuestoDuplicado = verificarRepuestoDuplicado(cargaCodigo, cargaLote)
         
         if (cargaRepuestoDuplicado) {
-            // Si el repuesto ya está en preCarga, mostramos el Swal y esperamos la confirmación
+          
             Swal.fire({
                 icon: "info",
                 title: "Repuesto ya ingresado",
@@ -313,81 +278,66 @@ evento.onclick = () => {
                 cancelButtonText: "No, cancelar"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Validamos la cantidad
-                    const cantidadAAgregar = parseInt(document.getElementById("cantidad").value);
+                   
+                    const cantidadAAgregar = parseInt(document.getElementById("cantidad").value)
 
-                    // Verificamos si la cantidad ingresada es válida
                     if (isNaN(cantidadAAgregar) || cantidadAAgregar <= 0) {
-                        Swal.fire("Cantidad inválida", "Por favor ingresa una cantidad válida mayor que cero.", "error");
-                        return;  // Detener si la cantidad no es válida
+                        Swal.fire("Cantidad inválida", "Por favor ingresa una cantidad válida mayor que cero.", "error")
+                        return
                     }
 
-                    // Encontramos el repuesto duplicado y sumamos la cantidad
-                    const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote);
+                    const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote)
                     if (repuestoDuplicadoEnPreCarga) {
-                        repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar;
+                        repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar
                     }
 
-                    // Llamamos a renderizarPrecarga para actualizar la vista
-                    renderizarPrecarga();
+                    renderizarPrecarga()
 
-                    // Restablecer el formulario y enfocar en el campo de código
-                    formularioDeProductos.reset();
-                    document.getElementById("codigo").focus();
+                    formularioDeProductos.reset()
+                    document.getElementById("codigo").focus()
 
-                    // Mostrar el Toastify solo si confirmamos la acción
                     if(result.isConfirmed){ tostada() }
                 }
-            });
-
-            return; // Detener la ejecución aquí para esperar la confirmación
+            })
+            return
         }
-
-        // Mostrar el Toastify solo después de la precarga si no hay duplicados
         precargarRepuestos()
     }
-};
-
+}
 // Función que verifica si hay otro repuesto con el mismo lote en preCarga o en el localStorage
 const verificarLoteDuplicado = (lote, codigo) => {
-    // Verificamos en preCarga
-    const loteEnPreCarga = preCarga.find((producto) => producto.lote === lote && producto.codigo !== codigo);
+    const loteEnPreCarga = preCarga.find((producto) => producto.lote === lote && producto.codigo !== codigo)
     if (loteEnPreCarga) {
-        // Lote duplicado en la precarga
         Swal.fire({
             icon: "warning",
             title: "Lote duplicado en la precarga",
             text: `El lote ${lote} ya corresponde a otro repuesto en la precarga con el código ${loteEnPreCarga.codigo}. Por favor, ingresá un lote distinto.`,
             confirmButtonText: "Aceptar"
-        });
-        return true; // Si se encuentra en preCarga, se retorna true para detener la ejecución
+        })
+        return true
     }
 
-    // Verificamos en localStorage
-    const loteEnLocalStorage = productos.find((producto) => producto.lote === lote && producto.codigo !== codigo);
+    const loteEnLocalStorage = productos.find((producto) => producto.lote === lote && producto.codigo !== codigo)
     if (loteEnLocalStorage) {
-        // Lote duplicado en el localStorage
+        
         Swal.fire({
             icon: "warning",
             title: "Lote duplicado en el Inventario",
             text: `El lote ${lote} corresponde a otro repuesto ingresado en el Inventario con el código ${loteEnLocalStorage.codigo}. Por favor, ingresa un lote distinto.`,
             confirmButtonText: "Aceptar"
-        });
-        return true; // Si se encuentra en localStorage, se retorna true para detener la ejecución
+        })
+        return true
     }
 
-    // Si no se encuentra duplicado
     return false;
-};
-
-// Modificación en la función verificarRepuestoDuplicado para realizar la validación con Swal
+}
 
 let evento1 = document.getElementById("botonAgregar")
 
 evento1.onclick = () => {
-    // Verificar si hay productos en la precarga
+   
     if (preCarga.length === 0) {
-        // Si no hay productos, mostrar un mensaje de advertencia
+        
         Swal.fire({
             title: "No puedes procesar un ingreso vacío!",
             showDenyButton: false,
@@ -395,15 +345,15 @@ evento1.onclick = () => {
             confirmButtonText: "Aceptar",
             denyButtonText: `Don't save`
         }).then(() => {
-            // Después de que el Swal se cierre, mostrar otro mensaje
+            
             Swal.fire("Ingresa repuestos!", "Recuerda que antes de procesar un ingreso debes tener repuestos incluidos en la precarga.", "warning")
                 .then(() => {
-                    // Establecer el foco en el campo "codigo"
-                    document.getElementById("codigo").focus();
-                });
-        });
+                   
+                    document.getElementById("codigo").focus()
+                })
+        })
 
-        return; // Salir de la función para evitar que se ejecute el siguiente Swal.fire
+        return
     }
 
     // Si hay productos en la precarga, continuar con la confirmación para procesar
@@ -417,24 +367,22 @@ evento1.onclick = () => {
         if (result.isConfirmed) {
             Swal.fire("Ingreso procesado con exito!", "Agregaste estos productos al stock, podrás visualizarlos en la sección Inventario de Productos.", "success")
                 .then(() => {
-                    procesarIngreso();
-                    // Establecer el foco en el campo "codigo" después de que el segundo Swal se cierre
-                    document.getElementById("codigo").focus();
-                });
+                    procesarIngreso()
+                    document.getElementById("codigo").focus()
+                })
         } else if (result.isDenied) {
             Swal.fire("Ingreso sin procesar!", "Podés editar el ingreso a continuación, si vuelves al menu principal perderás la precarga.", "warning")
                 .then(() => {
-                    // Establecer el foco en el campo "codigo" después de que el segundo Swal se cierre
-                    document.getElementById("codigo").focus();
-                });
+                    document.getElementById("codigo").focus()
+                })
         }
-    });
-};
+    })
+}
 
 let evento2 = document.getElementById("volverMenu")
 evento2.onclick = () => {
     window.location.href = "../index.html" 
 }
 
-renderizarPrecarga();
+renderizarPrecarga()
 

@@ -11,24 +11,21 @@ let productsContainer = document.getElementById("productos-lote-container")
 document.getElementById("lote").focus()
 
 if (productos.length === 0) {
-    Swal.fire("No se encontraron productos con ese lote.");
+    Swal.fire("No se encontraron productos con ese lote.")
 }
 
 const loteBusqueda = () => {
-   // aviso.innerHTML = ""
     productsContainer.innerHTML = ""
-
     let busquedaLote = document.getElementById("lote").value.toUpperCase()
-
     if (!busquedaLote) {
-        Swal.fire("Por favor, ingresá un lote válido.");
+        Swal.fire("Por favor, ingresá un lote válido.")
         return
     }
 
     const buscarLote = productos.filter((producto) => producto.lote === busquedaLote)
 
     if (buscarLote.length === 0) {
-        Swal.fire("No se encontraron repuestos con el lote ingresado.");
+        Swal.fire("No se encontraron repuestos con el lote ingresado.")
         document.getElementById("lote").value = ""
         return
     }
