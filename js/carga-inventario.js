@@ -192,23 +192,33 @@ const procesarIngreso = () => {
 
 let baseDeDatos = []
 
-const cargarBaseDeDatos = async () => {
+const cargarBaseDeDatos = () => {
   try {
-    const response = await fetch("../db/data.json")
-    if (!response.ok) {
-      throw new Error("Error al cargar la base de datos, la respuesta no es válida.")
-    }
-    baseDeDatos = await response.json()
-  } catch (error) {
-    console.error("Error al cargar la base de datos:", error)
-  
+    fetch("../db/data.json")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al cargar la base de datos, la respuesta no es válida.")
+        }
+        return response.json()
+      })
+      .then(data => {
+        baseDeDatos = data  
+
+        if (baseDeDatos.length < 3) {
+          throw new Error("Base de datos incompleta, no se puede proceder.")
+        }
+      })
+      
+  } catch (err) {
+    
     Swal.fire({
       icon: "error",
       title: "Error de conexión",
-      text: "Hubo un problema al cargar los datos. Por favor, inténtalo más tarde.",
+      text: `Hubo un problema: ${err.message}. Por favor, inténtalo más tarde.`,
     })
   }
 }
+
 
 cargarBaseDeDatos()
 const buscarProductoPorCodigo = (codigo) => {

@@ -4,10 +4,39 @@ let productsContainer = document.getElementById("productos-ingreso-container")
 document.getElementById("codigo").focus()
 
 let baseDeDatos = []
+
 fetch("../db/data.json")
-  .then((response) => response.json())
+  .then((response) => {
+    try {
+      if (!response.ok) {
+        throw new Error("Error al cargar la base de datos, la respuesta no es válida.")
+      }
+      return response.json()
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Error de conexión",
+        text: `Hubo un problema: ${err.message}. Por favor, inténtalo más tarde.`,
+      })
+    }
+  })
   .then((data) => {
-    baseDeDatos = data
+    try {
+      baseDeDatos = data
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Error al procesar los datos",
+        text: `Hubo un error al procesar los datos: ${err.message}`,
+      })
+    }
+  })
+  .catch((err) => {
+    Swal.fire({
+      icon: "error",
+      title: "Error de conexión",
+      text: `Hubo un problema: ${err.message}. Por favor, inténtalo más tarde.`,
+    })
   })
 
 const buscarProductoPorCodigo = (codigo) => {
