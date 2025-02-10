@@ -47,15 +47,17 @@ if (productos.length === 0) {
   Swal.fire("No se encontraron productos ingresados con ese código.")
 }
 
-const verificarLoteEnLocalStorage = (lote, codigo) => {
-  const loteEnLocalStorage = productos.find(
-    (producto) => producto.lote === lote && producto.codigo !== codigo
+// Modificación para permitir repuestos con el mismo código y lote en diferentes ubicaciones
+const verificarRepuestoEnLocalStorage = (lote, codigo, ubicacion) => {
+  // Verifica si ya existe el mismo código y lote en una ubicación diferente
+  const repuestoExistente = productos.find(
+    (producto) => producto.lote === lote && producto.codigo === codigo && producto.ubicacion === ubicacion
   )
-  if (loteEnLocalStorage) {
+  if (repuestoExistente) {
     Swal.fire({
       icon: "warning",
-      title: "Lote duplicado en el Inventario",
-      text: `El lote ${lote} corresponde a otro repuesto ingresado en el Inventario con el código ${loteEnLocalStorage.codigo}. Por favor, ingresa un lote distinto.`,
+      title: "Lote duplicado en la misma ubicación",
+      text: `El repuesto con código ${codigo} y lote ${lote} ya existe en la ubicación ${ubicacion}. Por favor, ingresa una ubicación diferente.`,
       confirmButtonText: "Aceptar",
     })
     return true
@@ -77,18 +79,19 @@ const ingresoRepuesto = () => {
     return
   }
 
-  if (verificarLoteEnLocalStorage(ingresoLote, ingresoCodigo)) {
+  if (verificarRepuestoEnLocalStorage(ingresoLote, ingresoCodigo, ubicacion)) {
     return
   }
 
   const repuestoExistenteEnLocalStorage = productos.find(
-    (producto) => producto.codigo === ingresoCodigo && producto.lote === ingresoLote)
+    (producto) => producto.codigo === ingresoCodigo && producto.lote === ingresoLote && producto.ubicacion === ubicacion
+  )
 
   if (repuestoExistenteEnLocalStorage) {
     Swal.fire({
       icon: "info",
       title: "Repuesto existente!",
-      text: `El repuesto con código ${ingresoCodigo} y lote ${ingresoLote} ya existe en el inventario. ¿Deseas agregar más cantidad?`,
+      text: `El repuesto con código ${ingresoCodigo} y lote ${ingresoLote} ya existe en el inventario en la ubicación ${ubicacion}. ¿Deseas agregar más cantidad?`,
       showCancelButton: true,
       confirmButtonText: "Sí, agregar más",
       cancelButtonText: "No, cancelar",
@@ -100,7 +103,7 @@ const ingresoRepuesto = () => {
         const card = document.createElement("div")
         card.innerHTML = `
           <p>*************************************************************</p>
-          <h3>Ingreso efectuado del código: ${ingresoCodigo} !</h3>
+          <h3>Ingreso efectuado del código: ${ingresoCodigo}!</h3>
           <p>-----------------------------------------------------------------------</p>
           <p>Agregaste: ${cantidadAgregar} unidades</p>
           <p>Descripción: ${descripcion}</p>
@@ -129,21 +132,25 @@ const ingresoRepuesto = () => {
     productos.push(nuevoRepuesto)
     localStorage.setItem("productos", JSON.stringify(productos))
 
-const card = document.createElement("div")
-card.innerHTML = `
-  <p>*************************************************************</p>
-  <h3>Nuevo repuesto ingresado con código: ${ingresoCodigo}!</h3>
-  <p>-----------------------------------------------------------------------</p>
-  <p>Cantidad agregada: ${cantidadAgregar} unidades</p>
-  <p>Descripción: ${descripcion}</p>
-  <p>Lote: ${ingresoLote}</p>
-  <p>Ubicación: ${ubicacion}</p>
-  <p>-----------------------------------------------------------------------</p>
-  <p>Cantidad total en stock: ${cantidadAgregar}.</p>
-  <p>*************************************************************</p>
-`
-productsContainer.appendChild(card)
+    // Calcular la cantidad total en stock, sumando todas las cantidades en las ubicaciones
+    const cantidadTotal = productos
+      .filter((producto) => producto.codigo === ingresoCodigo && producto.lote === ingresoLote)
+      .reduce((total, producto) => total + producto.cantidad, 0)
 
+    const card = document.createElement("div")
+    card.innerHTML = `
+      <p>*************************************************************</p>
+      <h3>Nuevo repuesto ingresado con código: ${ingresoCodigo}!</h3>
+      <p>-----------------------------------------------------------------------</p>
+      <p>Cantidad agregada: ${cantidadAgregar} unidades</p>
+      <p>Descripción: ${descripcion}</p>
+      <p>Lote: ${ingresoLote}</p>
+      <p>Ubicación: ${ubicacion}</p>
+      <p>-----------------------------------------------------------------------</p>
+      <p>Cantidad total en stock: ${cantidadTotal}.</p> <!-- Aquí mostramos la cantidad total en stock -->
+      <p>*************************************************************</p>
+    `
+    productsContainer.appendChild(card)
   }
   document.getElementById("codigo").value = ""
   document.getElementById("lote").value = ""
@@ -152,6 +159,7 @@ productsContainer.appendChild(card)
   document.getElementById("posicion").value = ""
   document.getElementById("codigo").focus()
 }
+
 
 const codigoInput = document.getElementById("codigo")
 codigoInput.addEventListener("blur", () => {
