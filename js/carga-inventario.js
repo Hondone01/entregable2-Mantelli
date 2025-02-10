@@ -7,18 +7,19 @@ function tostada () { Toastify({
     text: "Repuesto Ingresado!",
     duration: 1000,
     close: false,
-    gravity: "top", // `top` o `bottom`
-    position: "right", // `left`, `center` o `right`
-    stopOnFocus: false, // Evita que el toast se cierre cuando se pasa el mouse por encima
+    gravity: "top", 
+    position: "right", 
+    stopOnFocus: false, 
     style: {
         background: "linear-gradient(to right, rgb(235, 190, 235), rgb(200, 132, 218))",
     },
     offset: {
-        x: 200, // Eje horizontal
-        y: 100 // Eje vertical
+        x: 200, 
+        y: 100 
     },
-    onClick: function() {} // Callback después de hacer clic
-}).showToast();}
+    onClick: function() {} 
+}).showToast();
+document.getElementById("codigo").focus()}
 
 document.getElementById("codigo").focus()
 if (mensaje) {
@@ -70,17 +71,15 @@ const renderizarPrecarga = () => {
     })
 }
 
-// Verificación de duplicados con el localStorage
 const verificarLoteEnProductos = (lote, codigo) => {
     return productos.some((producto) => producto.lote === lote && producto.codigo !== codigo);
 };
 
 const verificarRepuestoDuplicado = (codigo, lote) => {
-    // Verificar si ya existe el repuesto en la lista preCarga
+    // Verifica si ya existe el repuesto en la lista preCarga
     const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === codigo && producto.lote === lote);
 
     if (repuestoDuplicadoEnPreCarga) {
-        // Mostrar alerta con la opción de agregar más cantidad
         Swal.fire({
             icon: "info",
             title: "Repuesto ya ingresado",
@@ -101,10 +100,10 @@ const verificarRepuestoDuplicado = (codigo, lote) => {
                 document.getElementById("codigo").focus()
                precargarRepuestos()
             }
-        });
-        return true;  
+        })
+        return true 
     }
-    return false; 
+    return false 
 }
 const precargarRepuestos = () => {
     aviso.innerHTML = ""
@@ -128,11 +127,10 @@ const precargarRepuestos = () => {
         return
     }
 
-    // Verificar si el repuesto ya está en localStorage con el mismo código y lote
+    // Verifica si el repuesto ya está en localStorage con el mismo código y lote
     const repuestoExistenteEnLocalStorage = productos.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote);
 
     if (repuestoExistenteEnLocalStorage) {
-        // Si existe el repuesto en localStorage, mostramos una alerta para agregar más cantidad
         Swal.fire({
             icon: "info",
             title: "Repuesto existente!",

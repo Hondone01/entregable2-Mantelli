@@ -45,7 +45,6 @@ const ingresoRepuesto = () => {
 
   if (!ingresoCodigo || !ingresoLote || cantidadAgregar <= 0) {
     Swal.fire("Debes completar todos los datos y la cantidad debe ser mayor a 0.")
-
     return
   }
 
