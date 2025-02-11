@@ -21,5 +21,5 @@ renderProductos(productos)
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
-    window.location.href = "../index.html" // Redirige al archivo menu.html
+    window.location.href = "../index.html" 
 }

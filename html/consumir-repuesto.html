@@ -6,12 +6,18 @@
     <title>Consumir-repuesto</title>
     <script defer src="../js/consumir-repuesto.js"></script> 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
     <h1>Consumos de Repuestos</h1>
     <p>Aquí podrás indicar cuando realizas un consumo de stock.</p>
     
     <div class="grid-container1">
+
+        <div class="div-6 animate__animated animate__pulse">
+            <img src="../icons/home.png" alt="">
+            <button type= "button" id="volverMenu">Volver al menu</button>
+        </div>
 
         <div class="div-1">
             <label for="codigo">Ingresá el código del repuesto a consumir:</label>
@@ -28,13 +34,13 @@
             <input id="cantidad" type="text" class="inputCantidad" required>
         </div>
 
-        <div class="div-4 pintaAmarillo">
-            <button type= "button" id="calcular">Ok</button>
+        <div class="div-4">
+            <label for="cantidad">Ingresá la ubicación del repuesto a consumir:</label>
+            <input id="ubicacion" type="text" class="inputUbicacion" required>
         </div>
 
-        <div class="div-5">
-            <img src="../icons/home.png" alt="">
-            <button type= "button" id="volverMenu">Volver al menu</button>
+        <div class="div-5 pintaAmarillo">
+            <button type= "button" id="calcular">Ok</button>
         </div>
 
     </div>

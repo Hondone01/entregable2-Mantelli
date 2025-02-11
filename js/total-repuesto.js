@@ -8,8 +8,7 @@ let productsContainer = document.getElementById("productos-total-container")
 let aviso = document.getElementById("mensaje")
 document.getElementById("producto").focus()
 if (productos.length === 0) {
-    Swal.fire("No se encontraron productos con el código introducido.");
-   // productsContainer.innerHTML = `<p>No se encontraron productos con el código introducido.</p>`
+    Swal.fire("No se encontraron productos con el código introducido.")
 }
 
 const cantidadTotal = () => {
@@ -18,16 +17,14 @@ const cantidadTotal = () => {
     let repuestoBuscado = document.getElementById("producto").value.toUpperCase()
 
     if (!repuestoBuscado) {
-        Swal.fire("Por favor, ingresá un código de repuesto válido.");
-       // aviso.innerHTML = `<p>Por favor, ingresá un código de repuesto válido.</p>`
+        Swal.fire("Por favor, ingresá un código de repuesto válido.")
         return
     }
 
     const busquedaRepuestos = productos.filter((producto) => producto.codigo === repuestoBuscado)
 
     if (busquedaRepuestos.length === 0) {
-        Swal.fire("No se encontraron productos con el código introducido.");
-       // aviso.innerHTML = `<p>No se encontraron productos con el código ingresado.</p>`
+        Swal.fire("No se encontraron productos con el código introducido.")
         return
     } else {
         let cantidadTotal = 0

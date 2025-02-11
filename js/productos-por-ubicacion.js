@@ -9,12 +9,11 @@ function renderProductos(productsArray) {
     productsContainer.innerHTML = ""
     document.getElementById("posicion").focus()
     if (productsArray.length === 0) {
-        Swal.fire("No se encontraron repuestos en esta ubicación!");
+        Swal.fire("No se encontraron repuestos en esta ubicación!")
         document.getElementById("posicion").value=""
         document.getElementById("posicion").focus()
         return
     }
-    
     
     productsArray.forEach((producto) => {
         const card = document.createElement("div")
@@ -41,5 +40,5 @@ document.getElementById("botonBuscar").onclick = () => {
 
 let evento1 = document.getElementById("volverMenu")
 evento1.onclick = () => {
-    window.location.href = "../index.html"// Redirige al archivo menu.html
+    window.location.href = "../index.html"
 }
