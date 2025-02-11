@@ -258,67 +258,74 @@ codigoInput.addEventListener("blur", () => {
 
 
 let evento = document.getElementById("incluirCarga");
+
 evento.onclick = () => {
-    let cargaCodigo = document.getElementById("codigo").value.toUpperCase();
-    let cargaDescripcion = document.getElementById("descripcion").value.toUpperCase();
-    let cargaCantidad = parseInt(document.getElementById("cantidad").value);
-    let cargaLote = document.getElementById("lote").value.toUpperCase();
-    let cargaUbicacion = document.getElementById("ubicacion").value.toUpperCase();
+    try {
+        let cargaCodigo = document.getElementById("codigo").value.toUpperCase();
+        let cargaDescripcion = document.getElementById("descripcion").value.toUpperCase();
+        let cargaCantidad = parseInt(document.getElementById("cantidad").value);
+        let cargaLote = document.getElementById("lote").value.toUpperCase();
+        let cargaUbicacion = document.getElementById("ubicacion").value.toUpperCase();
 
-    // Verificar si algún campo está vacío o la cantidad no es válida
-    if (!cargaCodigo || !cargaDescripcion || !cargaLote || !cargaUbicacion || isNaN(cargaCantidad) || cargaCantidad <= 0) {
-        Swal.fire("Antes de incluir repuestos, debes llenar todos los campos!");
-        return; // Si algún campo está vacío, no se ejecuta el toast
-    } else {
-        // Verificamos si el repuesto ya existe en la precarga
-        const cargaRepuestoDuplicado = verificarRepuestoDuplicado(cargaCodigo, cargaLote);
-        
-        if (cargaRepuestoDuplicado) {
-            // Si el repuesto ya está en preCarga, mostramos el Swal y esperamos la confirmación
-            Swal.fire({
-                icon: "info",
-                title: "Repuesto ya ingresado",
-                text: `El repuesto con código ${cargaCodigo} y lote ${cargaLote} ya está ingresado. ¿Deseas agregar más cantidad?`,
-                showCancelButton: true,
-                confirmButtonText: "Sí, agregar más",
-                cancelButtonText: "No, cancelar"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Validamos la cantidad
-                    const cantidadAAgregar = parseInt(document.getElementById("cantidad").value);
+        // Verificar si algún campo está vacío o la cantidad no es válida
+        if (!cargaCodigo || !cargaDescripcion || !cargaLote || !cargaUbicacion || isNaN(cargaCantidad) || cargaCantidad <= 0) {
+            Swal.fire("Antes de incluir repuestos, debes llenar todos los campos!");
+            return; // Si algún campo está vacío, no se ejecuta el toast
+        } else {
+            // Verificamos si el repuesto ya existe en la precarga
+            const cargaRepuestoDuplicado = verificarRepuestoDuplicado(cargaCodigo, cargaLote);
+            
+            if (cargaRepuestoDuplicado) {
+                // Si el repuesto ya está en preCarga, mostramos el Swal y esperamos la confirmación
+                Swal.fire({
+                    icon: "info",
+                    title: "Repuesto ya ingresado",
+                    text: `El repuesto con código ${cargaCodigo} y lote ${cargaLote} ya está ingresado. ¿Deseas agregar más cantidad?`,
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, agregar más",
+                    cancelButtonText: "No, cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Validamos la cantidad
+                        const cantidadAAgregar = parseInt(document.getElementById("cantidad").value);
 
-                    // Verificamos si la cantidad ingresada es válida
-                    if (isNaN(cantidadAAgregar) || cantidadAAgregar <= 0) {
-                        Swal.fire("Cantidad inválida", "Por favor ingresa una cantidad válida mayor que cero.", "error");
-                        return;  // Detener si la cantidad no es válida
+                        // Verificamos si la cantidad ingresada es válida
+                        if (isNaN(cantidadAAgregar) || cantidadAAgregar <= 0) {
+                            Swal.fire("Cantidad inválida", "Por favor ingresa una cantidad válida mayor que cero.", "error");
+                            return;  // Detener si la cantidad no es válida
+                        }
+
+                        // Encontramos el repuesto duplicado y sumamos la cantidad
+                        const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote);
+                        if (repuestoDuplicadoEnPreCarga) {
+                            repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar;
+                        }
+
+                        // Llamamos a renderizarPrecarga para actualizar la vista
+                        renderizarPrecarga();
+
+                        // Restablecer el formulario y enfocar en el campo de código
+                        formularioDeProductos.reset();
+                        document.getElementById("codigo").focus();
+
+                        // Mostrar el Toastify solo si confirmamos la acción
+                        if(result.isConfirmed){ tostada()}
+
                     }
+                });
 
-                    // Encontramos el repuesto duplicado y sumamos la cantidad
-                    const repuestoDuplicadoEnPreCarga = preCarga.find((producto) => producto.codigo === cargaCodigo && producto.lote === cargaLote);
-                    if (repuestoDuplicadoEnPreCarga) {
-                        repuestoDuplicadoEnPreCarga.cantidad += cantidadAAgregar;
-                    }
+                return; // Detener la ejecución aquí para esperar la confirmación
+            }
 
-                    // Llamamos a renderizarPrecarga para actualizar la vista
-                    renderizarPrecarga();
-
-                    // Restablecer el formulario y enfocar en el campo de código
-                    formularioDeProductos.reset();
-                    document.getElementById("codigo").focus();
-
-                    // Mostrar el Toastify solo si confirmamos la acción
-                    if(result.isConfirmed){ tostada()}
-                   
-                }
-            });
-
-            return; // Detener la ejecución aquí para esperar la confirmación
+            // Mostrar el Toastify solo después de la precarga si no hay duplicados
+            precargarRepuestos()
         }
-
-        // Mostrar el Toastify solo después de la precarga si no hay duplicados
-        precargarRepuestos()
-    }
+    } catch (err) {
+        console.error("Error al procesar los repuestos:", err);
+        Swal.fire("Error", "Hubo un problema al procesar el repuesto.", "intente nuevamente luego.");
+    } 
 };
+
 
 // Modificación en la función verificarRepuestoDuplicado para realizar la validación con Swal
 
