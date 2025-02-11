@@ -11,10 +11,6 @@ const productos = JSON.parse(localStorage.getItem("productos")) || []
 let productsContainer = document.getElementById("productos-consumo-container")
 document.getElementById("codigo").focus()
 
-if (productos.length === 0) {
-    Swal.fire("No se encontraron productos ingresados con ese código.")
-} 
-
 const consumoRepuesto = () => {
     productsContainer.innerHTML = ""
     let consumoCodigo = document.getElementById("codigo").value.toUpperCase()
