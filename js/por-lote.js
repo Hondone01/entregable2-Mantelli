@@ -10,10 +10,6 @@ let productsContainer = document.getElementById("productos-lote-container")
 //let aviso = document.getElementById("mensaje")
 document.getElementById("lote").focus()
 
-if (productos.length === 0) {
-    Swal.fire("No se encontraron productos con ese lote.")
-}
-
 const loteBusqueda = () => {
     productsContainer.innerHTML = ""
     let busquedaLote = document.getElementById("lote").value.toUpperCase()
