@@ -18,7 +18,8 @@ input {
 }
 
 .volverMenuIngreso {
-  margin-left: -1140px;
+  margin-top: 20px;
+  margin-left: -1240px;
   display: flex;
   align-items: center;
   align-content: center;
@@ -38,22 +39,19 @@ input {
   cursor: pointer;
 }
 
-.botones {
-  display: flex;
-  flex-direction: column;
-}
-.botones .CargaVolverAlMenu {
-  margin-top: 25px;
+.CargaVolverAlMenu {
+  margin-top: 45px;
   display: flex;
   margin-left: -200px;
 }
-.botones .CargaVolverAlMenu :hover {
+.CargaVolverAlMenu :hover {
   border: solid 1px;
   border-radius: 3px;
   cursor: pointer;
-  background-color: #78beb5;
+  background-color: #4c13eb;
 }
-.botones .botonAgregarInventario {
+
+.botonAgregarInventario {
   margin-top: 30px;
 }
 
@@ -125,8 +123,8 @@ input {
   align-content: center;
 }
 .grid-container1 .div-6 {
-  margin-top: -130px;
-  margin-left: -670px;
+  margin-top: -170px;
+  margin-left: -790px;
   display: flex;
   align-items: center;
   grid-area: item-6;
@@ -167,8 +165,6 @@ input {
 .grid-container2 .div-2 {
   padding-left: 80px;
   grid-area: item-2;
-  margin-top: 10px;
-  align-content: center;
 }
 .grid-container2 .div-3 {
   padding-left: 80px;
@@ -194,8 +190,7 @@ input {
 .grid-container2 .div-7 {
   padding-left: 20px;
   grid-area: item-7;
-  margin-top: 10px;
-  align-content: center;
+  margin-bottom: 10px;
 }
 .grid-container2 .div-8 {
   padding-left: 20px;
@@ -549,7 +544,7 @@ form input {
 }
 
 .CargaVolverAlMenu {
-  margin-left: -1100px;
+  margin-left: -1200px;
   margin-top: -70px;
   display: flex;
   width: 200px;
@@ -656,7 +651,7 @@ form input {
 }
 .grid-container5 .div-3 {
   margin-top: -100px;
-  margin-left: -280px;
+  margin-left: -300px;
   display: flex;
   align-items: center;
   grid-area: item-3;
@@ -711,7 +706,7 @@ form input {
 }
 .grid-container6 .div-4 {
   margin-top: -80px;
-  margin-left: -280px;
+  margin-left: -330px;
   display: flex;
   align-items: center;
   grid-area: item-4;
@@ -792,7 +787,7 @@ form input {
 }
 .grid-container7 .div-5 {
   margin-top: -80px;
-  margin-left: -280px;
+  margin-left: -340px;
   display: flex;
   align-items: center;
   grid-area: item-5;
