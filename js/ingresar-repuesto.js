@@ -43,10 +43,6 @@ const buscarProductoPorCodigo = (codigo) => {
   return baseDeDatos.find((producto) => producto.codigo === codigo)
 }
 
-if (productos.length === 0) {
-  Swal.fire("No se encontraron productos ingresados con ese código.")
-}
-
 // Modificación para permitir repuestos con el mismo código y lote en diferentes ubicaciones
 const verificarRepuestoEnLocalStorage = (lote, codigo, ubicacion) => {
   // Verifica si ya existe el mismo código y lote en una ubicación diferente
